@@ -3,9 +3,13 @@ from django.db import models
 # --- HABITACION ---
 class Habitacion(models.Model):
     TIPOS = [
-        ('simple', 'Simple'),
-        ('doble', 'Doble'),
-        ('suite', 'Suite'),
+    ('simple', 'Simple'),
+    ('doble', 'Doble'),
+    ('suite', 'Suite'),
+    ('vip', 'VIP'),
+    ('vip_premium', 'VIP Premium'),
+    ('vip_gold', 'VIP Gold'),
+    ('vip_diamond', 'VIP Diamond'),
     ]
     ESTADOS = [
         ('disponible', 'Disponible'),
@@ -14,7 +18,7 @@ class Habitacion(models.Model):
         ('mantenimiento', 'En Mantenimiento'),
     ]
     numero = models.CharField(max_length=10, unique=True)
-    tipo = models.CharField(max_length=10, choices=TIPOS)
+    tipo = models.CharField(max_length=20, choices=TIPOS)
     precio_por_noche = models.DecimalField(max_digits=8, decimal_places=2)
     estado = models.CharField(max_length=15, choices=ESTADOS, default='disponible')
     activo = models.BooleanField(default=True)  # False = dada de baja permanente
